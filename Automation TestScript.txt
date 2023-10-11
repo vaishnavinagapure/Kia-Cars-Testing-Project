@@ -1,0 +1,132 @@
+package TestNGprgm;
+
+
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeMethod;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.AfterMethod;
+
+public class ShoppingCart {
+   WebDriver d;
+   
+  @BeforeMethod
+  public void beforeMethod() {
+	  d=new ChromeDriver();
+	//  d=new FirefoxDriver();
+	//  d=new SafariDriver();
+	  d.get("https://kanchanbulkulwar.github.io/Online-Shopping/websiteKB.html");
+  }
+
+ @Test(groups="Header_tab",priority=5)
+  public void Header() throws InterruptedException {
+	  
+	  //For Home tab
+	   d.findElement(By.xpath("//a[@class='nav-link active']")).click();
+	  
+	  //For About us tab
+	    d.findElement(By.xpath("//a[text()='About Us']")).click();
+	  
+	  //For Categories Dropdown
+	List<WebElement> list= d.findElements(By.xpath("//a[@role='button']"));
+	System.out.println(list.size());
+	  Thread.sleep(2000);
+	  
+  }   
+		  
+		/*  List<WebElement> li=d.findElements(By.xpath("//[@class='dropdown-menu show']/li"));
+		  System.out.println(li.size());
+		 for(WebElement ctype:li)
+		  {
+			  if(((WebElement) li).getText().contains("Womens Traditional"))
+			  {
+				  ctype.click();
+				  break;
+			  }
+		  }*/
+		  
+
+	  
+	  //For Contact us tab
+  public void f()
+  {
+		 d.findElement(By.xpath("//a[@text='Contact Us']")).click();
+  }
+	  //For Search tab
+@Test(groups="SearchTab",priority=3)
+	  public void searchtab() throws InterruptedException 
+	  {
+	      d.findElement(By.xpath("//input[@type='search']")).sendKeys("Kurta"); //only char
+	      d.findElement(By.xpath("//button[@type='submit']")).click();
+	    Thread.sleep(5000);  
+          d.findElement(By.xpath("//*[@type=\"search\"]")).sendKeys("1234656");//only numbers
+	      d.findElement(By.xpath("//button[@type='submit']")).click();
+	    Thread.sleep(5000);
+	      d.findElement(By.xpath("//input[@type='search']")).sendKeys("Kurta123");//Alphabet  with number
+	      d.findElement(By.xpath("//button[@type='submit']")).click();
+        Thread.sleep(5000) ;
+          d.findElement(By.xpath("//input[@type='search']")).sendKeys("Kurta@!3");//Alphabet with Special char and Number
+          d.findElement(By.xpath("//button[@type='submit']")).click();
+        Thread.sleep(5000);
+          d.findElement(By.xpath("//input[@type='search']")).sendKeys("!@#$%^&*");//only Special char
+          d.findElement(By.xpath("//button[@type='submit']")).click();
+        Thread.sleep(5000);
+          d.findElement(By.xpath("//input[@type='search']")).sendKeys("Kurta@%^^"); // char with Special char 
+	      d.findElement(By.xpath("//button[@type='submit']")).click();
+	    Thread.sleep(2000);  
+        
+        
+  }
+@Test(groups="WebSlide()Showcase",priority=2)
+	  public void Mouse_action() throws InterruptedException
+	  {
+		  d.findElement(By.xpath("//*[@class=\"carousel-control-next-icon\"]")).click();
+		  Thread.sleep(1000);
+		  d.findElement(By.xpath("//*[@class=\"carousel-control-next-icon\"]")).click();
+		  Thread.sleep(1000);
+		  d.findElement(By.xpath("//*[@class=\"carousel-control-next-icon\"]")).click();
+		  Thread.sleep(1000);
+		}
+@Test(groups="WebPage_Link",priority=1)
+public void webpage_link() throws InterruptedException
+{
+		   d.get("https://kanchanbulkulwar.github.io/Online-Shopping/websiteKB.html");
+			Thread.sleep(100);
+		    List<WebElement> link= d.findElements(By.tagName("a"));
+			int a=link.size();
+			System.out.print("Weblink Count of this page is:");
+			System.out.println(a);
+}
+@Test(groups="Feedback_Form",priority=-1)
+	  public void Feeback_back() throws InterruptedException
+	  {
+		  d.get("https://kanchanbulkulwar.github.io/Online-Shopping/websiteKB.html");
+			d.findElement(By.xpath("//input[@id='exampleInputEmail1']")).sendKeys("Ganesh");
+			d.findElement(By.id("exampleInputPassword1")).sendKeys("deepakgodse@gmail.com");
+			d.findElement(By.xpath("//*[@type='Message']")).sendKeys("9988776655");
+			Thread.sleep(200);
+			d.findElement(By.xpath("//button[@class=\"btn btn-primary\"]")).click();
+			Thread.sleep(2000);
+			d.navigate().refresh();
+			d.findElement(By.xpath("//input[@id='exampleInputEmail1']")).sendKeys("123456");
+			d.findElement(By.id("exampleInputPassword1")).sendKeys("deepakgodse1@gmail.com");
+			d.findElement(By.xpath("//*[@type='Message']")).sendKeys("9988!@#$%^&");
+			Thread.sleep(500);
+			d.findElement(By.xpath("/html/body/div[4]/div[3]/div[1]/form/button")).click();
+	  }
+@AfterMethod
+  public void afterMethod() 
+  {
+	 // d.close();
+  }
+
+
+}
