@@ -1,1 +1,1 @@
-# Shopiing Cart-Testing-Project
+# Shoping Cart-Testing-Project
